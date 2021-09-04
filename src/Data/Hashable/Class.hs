@@ -706,8 +706,8 @@ instance Hashable BSI.ShortByteString where
 #endif
 
 instance Hashable T.Text where
-    hashWithSalt salt (T.Text arr off len) =
-        hashByteArrayWithSalt (TA.aBA arr) (off `shiftL` 1) (len `shiftL` 1)
+    hashWithSalt salt (T.Text (TA.ByteArray arr) off len) =
+        hashByteArrayWithSalt arr (off `shiftL` 1) (len `shiftL` 1)
         salt
 
 instance Hashable TL.Text where
